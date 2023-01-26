@@ -50,10 +50,18 @@
 
     <target name="compile" description="compile the source">
         <mkdir dir="${build.dir}" />
-        <javac srcdir="${src.dir}" destdir="${build.dir}" encoding="UTF-8" debug="true"
+        <javac srcdir="${src.dir}" destdir="${build.dir}" encoding="UTF-8" debug="true" fork="true"
             classpathref="classpath"
             includeantruntime="false" />
     </target>
+
+    <target name="run">
+        <java fork="true" failonerror="yes" classname="com.javalin.main.Main">
+            <classpath>
+                <pathelement location="${build.dir}" />
+            </classpath>
+        </java>
+     </target>
 
     <!-- ========== JAR + LIB START ========== -->
     <!-- constructs the external libraries classpath name  -->
